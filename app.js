@@ -1,0 +1,58 @@
+const karte = L.map('karte').setView([38.3452, -0.4810], 14);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(karte);
+
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+function popup(o) {
+  const zeiten = (o.oeffnungszeiten || []).map((z) => `<li>${esc(z)}</li>`).join('');
+  const link = o.link ? `<a href="${esc(o.link)}" target="_blank" rel="noopener">Website</a> · ` : '';
+  const route = `<a href="https://www.openstreetmap.org/directions?to=${o.lat}%2C${o.lon}" target="_blank" rel="noopener">Route</a>`;
+  return `<strong>${esc(o.name)}</strong><br>${esc(o.adresse)}${zeiten ? `<ul>${zeiten}</ul>` : '<br>'}${link}${route}`;
+}
+
+fetch('data/orte.json')
+  .then((r) => r.json())
+  .then((orte) => {
+    const liste = document.getElementById('orte');
+    const filter = document.getElementById('filter');
+    const eintraege = orte.map((o) => {
+      const marker = L.marker([o.lat, o.lon]).addTo(karte).bindPopup(popup(o));
+      const li = document.createElement('li');
+      li.className = 'ort';
+      li.innerHTML = `
+        <div class="kat">${esc(o.kategorie)}</div>
+        <h2>${esc(o.name)}</h2>
+        <div class="adr">${esc(o.adresse)}</div>
+        ${o.oeffnungszeiten ? `<ul>${o.oeffnungszeiten.map((z) => `<li>${esc(z)}</li>`).join('')}</ul>` : ''}
+        ${o.beschreibung ? `<p>${esc(o.beschreibung)}</p>` : ''}
+        ${o.nominiert_von ? `<div class="von">Nominiert von ${esc(o.nominiert_von)}</div>` : ''}`;
+      li.addEventListener('click', () => {
+        karte.setView([o.lat, o.lon], 17);
+        marker.openPopup();
+        document.getElementById('karte').scrollIntoView({ behavior: 'smooth' });
+      });
+      liste.appendChild(li);
+      return { o, marker, li };
+    });
+
+    if (eintraege.length) karte.fitBounds(L.featureGroup(eintraege.map((e) => e.marker)).getBounds().pad(0.2));
+
+    const kategorien = ['Alle', ...new Set(orte.map((o) => o.kategorie))];
+    kategorien.forEach((k) => {
+      const b = document.createElement('button');
+      b.textContent = k;
+      b.className = k === 'Alle' ? 'aktiv' : '';
+      b.addEventListener('click', () => {
+        filter.querySelectorAll('button').forEach((x) => x.classList.toggle('aktiv', x === b));
+        eintraege.forEach(({ o, marker, li }) => {
+          const sichtbar = k === 'Alle' || o.kategorie === k;
+          li.hidden = !sichtbar;
+          sichtbar ? marker.addTo(karte) : marker.remove();
+        });
+      });
+      filter.appendChild(b);
+    });
+  });
