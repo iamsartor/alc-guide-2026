@@ -6,11 +6,21 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
+// Sucht nach Name + Adresse, damit Google Maps den echten Eintrag (mit Bewertungen) findet.
+const googleMaps = (o) => o.google_maps || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${o.name}, ${o.adresse}`)}`;
+
+function links(o) {
+  const a = (href, text) => `<a href="${esc(href)}" target="_blank" rel="noopener">${text}</a>`;
+  return [
+    o.link && a(o.link, 'Website'),
+    a(googleMaps(o), 'Google Maps'),
+    a(`https://www.openstreetmap.org/directions?to=${o.lat}%2C${o.lon}`, 'Route (OSM)')
+  ].filter(Boolean).join(' · ');
+}
+
 function popup(o) {
   const zeiten = (o.oeffnungszeiten || []).map((z) => `<li>${esc(z)}</li>`).join('');
-  const link = o.link ? `<a href="${esc(o.link)}" target="_blank" rel="noopener">Website</a> · ` : '';
-  const route = `<a href="https://www.openstreetmap.org/directions?to=${o.lat}%2C${o.lon}" target="_blank" rel="noopener">Route</a>`;
-  return `<strong>${esc(o.name)}</strong><br>${esc(o.adresse)}${zeiten ? `<ul>${zeiten}</ul>` : '<br>'}${link}${route}`;
+  return `<strong>${esc(o.name)}</strong><br>${esc(o.adresse)}${zeiten ? `<ul>${zeiten}</ul>` : '<br>'}${links(o)}`;
 }
 
 fetch('data/orte.json')
@@ -28,8 +38,10 @@ fetch('data/orte.json')
         <div class="adr">${esc(o.adresse)}</div>
         ${o.oeffnungszeiten ? `<ul>${o.oeffnungszeiten.map((z) => `<li>${esc(z)}</li>`).join('')}</ul>` : ''}
         ${o.beschreibung ? `<p>${esc(o.beschreibung)}</p>` : ''}
+        <div class="links">${links(o)}</div>
         ${o.nominiert_von ? `<div class="von">Nominiert von ${esc(o.nominiert_von)}</div>` : ''}`;
-      li.addEventListener('click', () => {
+      li.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
         karte.setView([o.lat, o.lon], 17);
         marker.openPopup();
         document.getElementById('karte').scrollIntoView({ behavior: 'smooth' });

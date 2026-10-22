@@ -17,6 +17,7 @@ Alle Orte stehen in [`data/orte.json`](data/orte.json). Einfach einen Eintrag er
   "oeffnungszeiten": ["Mo bis Fr: 09:00 bis 18:00"],
   "beschreibung": "Ein, zwei Sätze, warum wir hinwollen.",
   "link": "https://… (optional)",
+  "google_maps": "https://maps.app.goo.gl/… (optional, sonst wird automatisch nach Name + Adresse gesucht)",
   "nominiert_von": "Name"
 }
 ```
