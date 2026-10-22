@@ -1,0 +1,46 @@
+[
+  {
+    "id": "mercadillo-teulada",
+    "name": "Mercadillo (Straßenmarkt)",
+    "kategorie": "Markt",
+    "adresse": "Calle de Teulada, Alicante",
+    "lat": 38.3532,
+    "lon": -0.4868,
+    "oeffnungszeiten": [
+      "Do: 08:00 bis 14:00",
+      "Sa: 08:00 bis 14:00"
+    ],
+    "beschreibung": "Der große Straßenmarkt von Alicante: Obst, Gemüse, Kleidung, Krimskrams.",
+    "nominiert_von": "Michael"
+  },
+  {
+    "id": "mercado-central",
+    "name": "Mercado Central",
+    "kategorie": "Markt",
+    "adresse": "Av. Alfonso X el Sabio, 10, 03004 Alicante",
+    "lat": 38.3475,
+    "lon": -0.4874,
+    "oeffnungszeiten": [
+      "Mo bis Fr: 07:00 bis 14:30",
+      "Sa: 07:00 bis 15:00"
+    ],
+    "beschreibung": "Die überdachte Markthalle im Jugendstil mit Fisch, Fleisch, Obst und Tapas-Ständen.",
+    "nominiert_von": "Michael"
+  },
+  {
+    "id": "eatmytrip",
+    "name": "EatMyTrip Brunch & Bakery",
+    "kategorie": "Café / Brunch",
+    "adresse": "Carrer Arquitecto Morell, 9, 03003 Alicante",
+    "lat": 38.3423,
+    "lon": -0.4930,
+    "oeffnungszeiten": [
+      "Mo bis Do: 08:00 bis 16:30",
+      "Fr und Sa: 08:00 bis 17:00",
+      "So: 09:00 bis 16:30"
+    ],
+    "beschreibung": "Sehr beliebtes Brunch-Café im Zentrum (Google 4,8). Küche schließt 30 Minuten vor Ladenschluss. Ob reserviert werden kann, vorher telefonisch klären: +34 645 55 96 33.",
+    "link": "https://www.eatmytripbrunch.com/brunch-restaurants/alicante-morrell/",
+    "nominiert_von": "Michael"
+  }
+]

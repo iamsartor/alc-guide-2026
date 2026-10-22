@@ -1,0 +1,23 @@
+:root { --akzent: #d9480f; --text: #1f2328; --grau: #6b7280; --hg: #faf7f2; --karte-h: 55vh; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; color: var(--text); background: var(--hg); }
+header, footer { padding: 1rem; }
+header h1 { margin: 0 0 .25rem; color: var(--akzent); }
+header p, footer { color: var(--grau); margin: 0; }
+footer { font-size: .85rem; }
+main { display: grid; gap: 1rem; padding: 0 1rem; }
+#karte { height: var(--karte-h); border-radius: 8px; }
+#filter { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .75rem; }
+#filter button { border: 1px solid var(--akzent); background: #fff; color: var(--akzent); border-radius: 999px; padding: .3rem .8rem; cursor: pointer; }
+#filter button.aktiv { background: var(--akzent); color: #fff; }
+#orte { list-style: none; padding: 0; margin: 0; display: grid; gap: .75rem; }
+.ort { background: #fff; border-radius: 8px; padding: .9rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,.08); cursor: pointer; }
+.ort h2 { font-size: 1.1rem; margin: 0 0 .2rem; }
+.ort .kat { font-size: .8rem; color: var(--akzent); text-transform: uppercase; letter-spacing: .04em; }
+.ort .adr, .ort .von { color: var(--grau); font-size: .9rem; }
+.ort ul { margin: .4rem 0; padding-left: 1.1rem; }
+@media (min-width: 900px) {
+  main { grid-template-columns: 3fr 2fr; align-items: start; }
+  #karte { height: calc(100vh - 9rem); position: sticky; top: 1rem; }
+  #orte { max-height: calc(100vh - 12rem); overflow-y: auto; }
+}
