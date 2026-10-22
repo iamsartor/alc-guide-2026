@@ -35,3 +35,7 @@ Dann http://localhost:8000 öffnen.
 ## GitHub Pages
 
 Settings → Pages → Source: „Deploy from a branch“, Branch `main`, Ordner `/ (root)`.
+
+## Nach Änderungen an app.js oder style.css
+
+In `index.html` die Versionsnummer hinter `style.css?v=` bzw. `app.js?v=` hochzählen, sonst zeigen Browser bis zu 10 Minuten lang die alte Version. `data/orte.json` wird immer frisch geladen.

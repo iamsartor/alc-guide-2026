@@ -23,7 +23,7 @@ function popup(o) {
   return `<strong>${esc(o.name)}</strong><br>${esc(o.adresse)}${zeiten ? `<ul>${zeiten}</ul>` : '<br>'}${links(o)}`;
 }
 
-fetch('data/orte.json')
+fetch('data/orte.json', { cache: 'no-cache' })
   .then((r) => r.json())
   .then((orte) => {
     const liste = document.getElementById('orte');
