@@ -22,6 +22,8 @@ Alle Orte stehen in [`data/orte.json`](data/orte.json). Einfach einen Eintrag er
 }
 ```
 
+Für die Unterkunft gibt es zusätzlich `"unterkunft": true`: Sie bekommt einen eigenen blauen Haus-Marker, steht oben in der Liste und bleibt bei jedem Filter sichtbar.
+
 Koordinaten bekommt man auf openstreetmap.org per Rechtsklick → „Adresse anzeigen“ (oder in Google Maps per Rechtsklick).
 
 ## Lokal ansehen

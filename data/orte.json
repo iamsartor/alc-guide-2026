@@ -92,5 +92,16 @@
     "lon": -0.4065,
     "beschreibung": "Felsiges Kap mit Leuchtturm zwischen Alicante und San Juan. Weiter Blick über die Bucht, gut bei Sonnenaufgang.",
     "nominiert_von": "Michael"
+  },
+  {
+    "id": "villa-elaine",
+    "name": "Villa Elaine",
+    "kategorie": "Unterkunft",
+    "unterkunft": true,
+    "adresse": "Calle Islandia, 03560 El Campello",
+    "lat": 38.4549826,
+    "lon": -0.3503169,
+    "beschreibung": "Unsere Unterkunft.",
+    "google_maps": "https://maps.app.goo.gl/P1E7SgN7MZ83h71r7"
   }
 ]
