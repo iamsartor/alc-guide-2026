@@ -1,25 +1,135 @@
-:root { --akzent: #d9480f; --text: #1f2328; --grau: #6b7280; --hg: #faf7f2; --karte-h: 55vh; }
+/* Geist Design System (Vercel): Geist/Geist Mono, Graustufen, Blau als Akzent, Hell- und Dunkelmodus */
+:root {
+  --background-100: #ffffff;
+  --background-200: #fafafa;
+  --gray-100: #f2f2f2;
+  --gray-200: #ebebeb;
+  --gray-alpha-400: rgba(0, 0, 0, .08);
+  --gray-alpha-600: rgba(0, 0, 0, .21);
+  --gray-900: #4d4d4d;
+  --gray-1000: #171717;
+  --blue-700: #006bff;
+  --blue-900: #0060f1;
+  --focus: 0 0 0 2px var(--background-100), 0 0 0 4px var(--blue-700);
+  --shadow: 0 0 0 1px var(--gray-alpha-400), 0 2px 2px rgba(0, 0, 0, .04);
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --karte-h: 55vh;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-100: #0a0a0a;
+    --background-200: #000000;
+    --gray-100: #1a1a1a;
+    --gray-200: #1f1f1f;
+    --gray-alpha-400: rgba(255, 255, 255, .14);
+    --gray-alpha-600: rgba(255, 255, 255, .3);
+    --gray-900: #a1a1a1;
+    --gray-1000: #ededed;
+    --blue-700: #006efe;
+    --blue-900: #47a8ff;
+    --shadow: 0 0 0 1px var(--gray-alpha-400);
+  }
+  .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9); }
+}
+
 * { box-sizing: border-box; }
-body { margin: 0; font-family: system-ui, sans-serif; color: var(--text); background: var(--hg); }
-header, footer { padding: 1rem; }
-header h1 { margin: 0 0 .25rem; color: var(--akzent); }
-header p, footer { color: var(--grau); margin: 0; }
-footer { font-size: .85rem; }
-main { display: grid; gap: 1rem; padding: 0 1rem; }
-#karte { height: var(--karte-h); border-radius: 8px; }
-#filter { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .75rem; }
-#filter button { border: 1px solid var(--akzent); background: #fff; color: var(--akzent); border-radius: 999px; padding: .3rem .8rem; cursor: pointer; }
-#filter button.aktiv { background: var(--akzent); color: #fff; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--gray-1000);
+  background: var(--background-200);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--blue-900); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: none; box-shadow: var(--focus); border-radius: var(--radius-sm); }
+
+header {
+  background: var(--background-100);
+  border-bottom: 1px solid var(--gray-alpha-400);
+  margin-bottom: 1rem;
+}
+.kopf { max-width: 1400px; margin: 0 auto; padding: 1.25rem 1rem; }
+header h1 { margin: 0 0 .25rem; font-size: 24px; line-height: 32px; font-weight: 600; letter-spacing: -.029em; }
+header p { margin: 0; color: var(--gray-900); }
+
+main { display: grid; gap: 1rem; padding: 0 1rem; max-width: 1400px; margin: 0 auto; }
+#karte {
+  height: var(--karte-h);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  background: var(--gray-100);
+}
+
+#filter { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+#filter button {
+  font: inherit;
+  font-weight: 500;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 9999px;
+  border: 0;
+  cursor: pointer;
+  color: var(--gray-1000);
+  background: var(--background-100);
+  box-shadow: 0 0 0 1px var(--gray-alpha-400);
+  transition: background .15s, color .15s;
+}
+#filter button:hover { background: var(--gray-100); }
+#filter button.aktiv { background: var(--gray-1000); color: var(--background-100); box-shadow: none; }
+#filter button:focus-visible { box-shadow: var(--focus); }
+
 #orte { list-style: none; padding: 0; margin: 0; display: grid; gap: .75rem; }
-.ort { background: #fff; border-radius: 8px; padding: .9rem 1rem; box-shadow: 0 1px 3px rgba(0,0,0,.08); cursor: pointer; }
-.ort h2 { font-size: 1.1rem; margin: 0 0 .2rem; }
-.ort .kat { font-size: .8rem; color: var(--akzent); text-transform: uppercase; letter-spacing: .04em; }
-.ort .adr, .ort .von { color: var(--grau); font-size: .9rem; }
-.ort .links { margin: .4rem 0; font-size: .9rem; }
-.ort a, .leaflet-popup a { color: var(--akzent); }
-.ort ul { margin: .4rem 0; padding-left: 1.1rem; }
+.ort {
+  background: var(--background-100);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: box-shadow .15s;
+}
+.ort:hover { box-shadow: 0 0 0 1px var(--gray-alpha-600), 0 2px 2px rgba(0, 0, 0, .04); }
+.ort h2 { font-size: 16px; line-height: 24px; font-weight: 600; letter-spacing: -.01em; margin: .5rem 0 .125rem; }
+.ort .kat {
+  display: inline-block;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 500;
+  padding: 0 8px;
+  border-radius: 9999px;
+  background: var(--gray-200);
+  color: var(--gray-1000);
+}
+.ort .adr, .ort .von { color: var(--gray-900); }
+.ort .von { font-size: 13px; margin-top: .5rem; }
+.ort p { margin: .5rem 0; }
+.ort .links { margin: .5rem 0 0; }
+ul.zeiten { list-style: none; margin: .5rem 0; padding: 0; font-family: var(--font-mono); font-size: 13px; line-height: 20px; }
+
+.leaflet-container { font-family: var(--font-sans); }
+.leaflet-container a { color: var(--blue-900); }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: var(--background-100);
+  color: var(--gray-1000);
+  box-shadow: var(--shadow), 0 8px 16px rgba(0, 0, 0, .08);
+}
+.leaflet-popup-content-wrapper { border-radius: var(--radius-md); }
+.leaflet-popup-content { font-size: 14px; line-height: 20px; }
+.leaflet-container a.leaflet-popup-close-button { color: var(--gray-900); }
+.leaflet-bar { border: 0 !important; box-shadow: var(--shadow) !important; border-radius: var(--radius-sm) !important; overflow: hidden; }
+.leaflet-bar a { background: var(--background-100); color: var(--gray-1000); border-color: var(--gray-alpha-400); }
+.leaflet-bar a:hover { background: var(--gray-100); }
+.leaflet-control-attribution { background: var(--background-100) !important; color: var(--gray-900); }
+
+footer { max-width: 1400px; margin: 0 auto; padding: 1.5rem 1rem; color: var(--gray-900); font-size: 13px; }
+
 @media (min-width: 900px) {
   main { grid-template-columns: 3fr 2fr; align-items: start; }
-  #karte { height: calc(100vh - 9rem); position: sticky; top: 1rem; }
-  #orte { max-height: calc(100vh - 12rem); overflow-y: auto; }
+  #karte { height: calc(100vh - 10rem); position: sticky; top: 1rem; }
+  #orte { max-height: calc(100vh - 13rem); overflow-y: auto; padding: 1px; }
 }
