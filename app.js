@@ -20,7 +20,7 @@ function links(o) {
 
 function popup(o) {
   const zeiten = (o.oeffnungszeiten || []).map((z) => `<li>${esc(z)}</li>`).join('');
-  return `<strong>${esc(o.name)}</strong><br>${esc(o.adresse)}${zeiten ? `<ul>${zeiten}</ul>` : '<br>'}${links(o)}`;
+  return `<strong>${esc(o.name)}</strong><br>${esc(o.adresse)}${zeiten ? `<ul class="zeiten">${zeiten}</ul>` : '<br>'}${links(o)}`;
 }
 
 fetch('data/orte.json', { cache: 'no-cache' })
@@ -36,7 +36,7 @@ fetch('data/orte.json', { cache: 'no-cache' })
         <div class="kat">${esc(o.kategorie)}</div>
         <h2>${esc(o.name)}</h2>
         <div class="adr">${esc(o.adresse)}</div>
-        ${o.oeffnungszeiten ? `<ul>${o.oeffnungszeiten.map((z) => `<li>${esc(z)}</li>`).join('')}</ul>` : ''}
+        ${o.oeffnungszeiten ? `<ul class="zeiten">${o.oeffnungszeiten.map((z) => `<li>${esc(z)}</li>`).join('')}</ul>` : ''}
         ${o.beschreibung ? `<p>${esc(o.beschreibung)}</p>` : ''}
         <div class="links">${links(o)}</div>
         ${o.nominiert_von ? `<div class="von">Nominiert von ${esc(o.nominiert_von)}</div>` : ''}`;
@@ -57,8 +57,12 @@ fetch('data/orte.json', { cache: 'no-cache' })
       const b = document.createElement('button');
       b.textContent = k;
       b.className = k === 'Alle' ? 'aktiv' : '';
+      b.setAttribute('aria-pressed', k === 'Alle');
       b.addEventListener('click', () => {
-        filter.querySelectorAll('button').forEach((x) => x.classList.toggle('aktiv', x === b));
+        filter.querySelectorAll('button').forEach((x) => {
+          x.classList.toggle('aktiv', x === b);
+          x.setAttribute('aria-pressed', x === b);
+        });
         eintraege.forEach(({ o, marker, li }) => {
           const sichtbar = k === 'Alle' || o.kategorie === k;
           li.hidden = !sichtbar;

@@ -4,23 +4,29 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Alicante Guide 2026</title>
+  <meta name="color-scheme" content="light dark">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
   <header>
-    <h1>Alicante Guide 2026</h1>
-    <p>Orte, die wir besuchen möchten. Klick auf einen Ort, um ihn auf der Karte zu sehen.</p>
+    <div class="kopf">
+      <h1>Alicante Guide 2026</h1>
+      <p>Orte, die wir besuchen möchten. Klick auf einen Ort, um ihn auf der Karte zu sehen.</p>
+    </div>
   </header>
   <main>
     <div id="karte" aria-label="Karte von Alicante"></div>
     <section>
-      <div id="filter"></div>
+      <div id="filter" role="group" aria-label="Nach Kategorie filtern"></div>
       <ul id="orte"></ul>
     </section>
   </main>
   <footer>Kartendaten © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende</footer>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>
