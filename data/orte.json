@@ -62,5 +62,35 @@
     "lon": -0.233,
     "beschreibung": "Küstenstädtchen rund 30 km nördlich mit den bunten Häusern an der Flussmündung, Altstadt und Strand. Bekannt für Schokolade (Museo Valor). Ab Luceros mit der Tram L1 (Richtung Benidorm) in etwa einer Stunde.",
     "nominiert_von": "Annika"
+  },
+  {
+    "id": "calas-el-campello",
+    "name": "Felsbuchten Cala d'Enmig / Morro Blanc / Coveta Fumà",
+    "kategorie": "Fotospot",
+    "adresse": "Küstenweg nördlich von El Campello, 03560 El Campello",
+    "lat": 38.447,
+    "lon": -0.3735,
+    "beschreibung": "Kleine Felsbuchten am Küstenweg. Sie zeigen nach Westen, deshalb ideal für Fotos zum Sonnenuntergang.",
+    "nominiert_von": "Michael"
+  },
+  {
+    "id": "hafen-el-campello",
+    "name": "Paseo marítimo und Hafen El Campello",
+    "kategorie": "Fotospot",
+    "adresse": "Passeig Marítim / Port d'El Campello, 03560 El Campello",
+    "lat": 38.4285,
+    "lon": -0.3915,
+    "beschreibung": "Bunte Fassaden der alten Fischerhäuser und Boote im Hafen. Schöner Spaziergang über den Skulpturenweg „Voramar“ von der Torre de la Illeta bis zum Hafen.",
+    "nominiert_von": "Michael"
+  },
+  {
+    "id": "cabo-de-la-huerta",
+    "name": "Cabo de la Huerta",
+    "kategorie": "Fotospot",
+    "adresse": "Cabo de la Huerta, 03540 Alicante",
+    "lat": 38.3545,
+    "lon": -0.4065,
+    "beschreibung": "Felsiges Kap mit Leuchtturm zwischen Alicante und San Juan. Weiter Blick über die Bucht, gut bei Sonnenaufgang.",
+    "nominiert_von": "Michael"
   }
 ]
