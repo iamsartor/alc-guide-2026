@@ -33,7 +33,7 @@
     "kategorie": "Café / Brunch",
     "adresse": "Carrer Arquitecto Morell, 9, 03003 Alicante",
     "lat": 38.3423,
-    "lon": -0.4930,
+    "lon": -0.493,
     "oeffnungszeiten": [
       "Mo bis Do: 08:00 bis 16:30",
       "Fr und Sa: 08:00 bis 17:00",
@@ -42,5 +42,15 @@
     "beschreibung": "Sehr beliebtes Brunch-Café im Zentrum (Google 4,8). Küche schließt 30 Minuten vor Ladenschluss. Ob reserviert werden kann, vorher telefonisch klären: +34 645 55 96 33.",
     "link": "https://www.eatmytripbrunch.com/brunch-restaurants/alicante-morrell/",
     "nominiert_von": "Michael"
+  },
+  {
+    "id": "playa-san-juan",
+    "name": "Playa de San Juan",
+    "kategorie": "Strand",
+    "adresse": "Playa de San Juan, Alicante",
+    "lat": 38.3712,
+    "lon": -0.4206,
+    "beschreibung": "Rund 7 km langer, breiter Sandstrand nordöstlich der Stadt mit Promenade, Strandbars und Duschen. Vom Zentrum (Luceros) mit der Tram L3/L4 in etwa 20 bis 30 Minuten erreichbar.",
+    "nominiert_von": "Christopher"
   }
 ]
