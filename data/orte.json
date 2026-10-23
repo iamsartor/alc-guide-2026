@@ -52,5 +52,15 @@
     "lon": -0.4206,
     "beschreibung": "Rund 7 km langer, breiter Sandstrand nordöstlich der Stadt mit Promenade, Strandbars und Duschen. Vom Zentrum (Luceros) mit der Tram L3/L4 in etwa 20 bis 30 Minuten erreichbar.",
     "nominiert_von": "Christopher"
+  },
+  {
+    "id": "villajoyosa",
+    "name": "Villajoyosa (La Vila Joiosa)",
+    "kategorie": "Ausflug",
+    "adresse": "Casco antiguo, 03570 Villajoyosa",
+    "lat": 38.5055,
+    "lon": -0.233,
+    "beschreibung": "Küstenstädtchen rund 30 km nördlich mit den bunten Häusern an der Flussmündung, Altstadt und Strand. Bekannt für Schokolade (Museo Valor). Ab Luceros mit der Tram L1 (Richtung Benidorm) in etwa einer Stunde.",
+    "nominiert_von": "Annika"
   }
 ]
