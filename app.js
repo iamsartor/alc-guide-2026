@@ -18,6 +18,15 @@ function links(o) {
   ].filter(Boolean).join(' · ');
 }
 
+// Eigener Marker für unsere Unterkunft, damit man sie auf der Karte sofort findet.
+const unterkunftIcon = L.divIcon({
+  className: 'unterkunft-marker',
+  html: '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" fill="currentColor"/></svg>',
+  iconSize: [36, 36],
+  iconAnchor: [18, 18],
+  popupAnchor: [0, -20]
+});
+
 function popup(o) {
   const zeiten = (o.oeffnungszeiten || []).map((z) => `<li>${esc(z)}</li>`).join('');
   return `<strong>${esc(o.name)}</strong><br>${esc(o.adresse)}${zeiten ? `<ul class="zeiten">${zeiten}</ul>` : '<br>'}${links(o)}`;
@@ -28,12 +37,13 @@ fetch('data/orte.json', { cache: 'no-cache' })
   .then((orte) => {
     const liste = document.getElementById('orte');
     const filter = document.getElementById('filter');
+    orte.sort((a, b) => Boolean(b.unterkunft) - Boolean(a.unterkunft));
     const eintraege = orte.map((o) => {
-      const marker = L.marker([o.lat, o.lon]).addTo(karte).bindPopup(popup(o));
+      const marker = L.marker([o.lat, o.lon], o.unterkunft ? { icon: unterkunftIcon, zIndexOffset: 1000 } : {}).addTo(karte).bindPopup(popup(o));
       const li = document.createElement('li');
-      li.className = 'ort';
+      li.className = o.unterkunft ? 'ort unterkunft' : 'ort';
       li.innerHTML = `
-        <div class="kat">${esc(o.kategorie)}</div>
+        <div class="kat">${esc(o.unterkunft ? 'Unsere Unterkunft' : o.kategorie)}</div>
         <h2>${esc(o.name)}</h2>
         <div class="adr">${esc(o.adresse)}</div>
         ${o.oeffnungszeiten ? `<ul class="zeiten">${o.oeffnungszeiten.map((z) => `<li>${esc(z)}</li>`).join('')}</ul>` : ''}
@@ -52,7 +62,7 @@ fetch('data/orte.json', { cache: 'no-cache' })
 
     if (eintraege.length) karte.fitBounds(L.featureGroup(eintraege.map((e) => e.marker)).getBounds().pad(0.2));
 
-    const kategorien = ['Alle', ...new Set(orte.map((o) => o.kategorie))];
+    const kategorien = ['Alle', ...new Set(orte.filter((o) => !o.unterkunft).map((o) => o.kategorie))];
     kategorien.forEach((k) => {
       const b = document.createElement('button');
       b.textContent = k;
@@ -64,7 +74,7 @@ fetch('data/orte.json', { cache: 'no-cache' })
           x.setAttribute('aria-pressed', x === b);
         });
         eintraege.forEach(({ o, marker, li }) => {
-          const sichtbar = k === 'Alle' || o.kategorie === k;
+          const sichtbar = k === 'Alle' || o.kategorie === k || o.unterkunft;
           li.hidden = !sichtbar;
           sichtbar ? marker.addTo(karte) : marker.remove();
         });
