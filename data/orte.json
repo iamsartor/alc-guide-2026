@@ -103,5 +103,73 @@
     "lon": -0.3503169,
     "beschreibung": "Unsere Unterkunft.",
     "google_maps": "https://maps.app.goo.gl/P1E7SgN7MZ83h71r7"
+  },
+  {
+    "id": "altea-parkplatz-basseta",
+    "name": "Parkplatz La Basseta (Altea)",
+    "kategorie": "Altea-Tag",
+    "adresse": "Camí de l'Algar 7, 03590 Altea",
+    "lat": 38.6038,
+    "lon": -0.0497,
+    "beschreibung": "Kostenloser städtischer Parkplatz nahe der Altstadt. Dienstags bis etwa 14 Uhr ist hier Markt, dann besser in die Tiefgarage am Rathaus.",
+    "nominiert_von": "Michael"
+  },
+  {
+    "id": "altea-kirche",
+    "name": "Altstadt Altea und blaue Kirche",
+    "kategorie": "Altea-Tag",
+    "adresse": "Plaça de l'Església, 03590 Altea",
+    "lat": 38.5992,
+    "lon": -0.0518,
+    "beschreibung": "Weiße Gassen hinauf zur Kirche Nuestra Señora del Consuelo mit der blauen Kuppel, 1 bis 2 Stunden. Viele Treppen: für Kleinkinder lieber die Trage als den Kinderwagen.",
+    "nominiert_von": "Michael"
+  },
+  {
+    "id": "altea-de-sabors",
+    "name": "De Sabors",
+    "kategorie": "Altea-Tag",
+    "adresse": "Carrer Sant Miquel 4, 03590 Altea",
+    "lat": 38.598861,
+    "lon": -0.052218,
+    "oeffnungszeiten": [
+      "Täglich: 10:00 bis 22:00"
+    ],
+    "beschreibung": "Café und Konditorei direkt an der Kirche.",
+    "nominiert_von": "Michael"
+  },
+  {
+    "id": "altea-casita-jardin",
+    "name": "La Casita Jardín",
+    "kategorie": "Altea-Tag",
+    "adresse": "Carrer de la Filharmònica 13, 03590 Altea",
+    "lat": 38.599256,
+    "lon": -0.048882,
+    "oeffnungszeiten": [
+      "Mo bis Sa: 09:00 bis 14:30",
+      "So: geschlossen"
+    ],
+    "beschreibung": "Vegetarisches Café mit Specialty Coffee und richtigem Brunch. Besser reservieren.",
+    "link": "https://www.lacasitajardin.es/",
+    "nominiert_von": "Michael"
+  },
+  {
+    "id": "altea-jardin-sentidos",
+    "name": "Jardín de los Sentidos",
+    "kategorie": "Altea-Tag",
+    "adresse": "Partida la Olla 42, 03590 Altea",
+    "lat": 38.6248,
+    "lon": -0.026159,
+    "beschreibung": "Teehaus in einem tropischen Garten etwas außerhalb. Öffnungszeiten wechseln, vorher prüfen.",
+    "nominiert_von": "Michael"
+  },
+  {
+    "id": "faro-albir",
+    "name": "Leuchtturm L'Albir",
+    "kategorie": "Altea-Tag",
+    "adresse": "Camí del Far de l'Albir, 03581 L'Alfàs del Pi",
+    "lat": 38.5632,
+    "lon": -0.0382,
+    "beschreibung": "Asphaltierter Weg zum Leuchtturm im Naturpark Serra Gelada, etwa 2 km pro Richtung, gut mit Kinderwagen. Toller Blick auf die Bucht von Altea.",
+    "nominiert_von": "Michael"
   }
 ]

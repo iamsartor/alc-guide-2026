@@ -26,6 +26,10 @@ Für die Unterkunft gibt es zusätzlich `"unterkunft": true`: Sie bekommt einen 
 
 Koordinaten bekommt man auf openstreetmap.org per Rechtsklick → „Adresse anzeigen“ (oder in Google Maps per Rechtsklick).
 
+## Tagesausflüge
+
+Ausflüge mit mehreren Stationen stehen in [`data/touren.json`](data/touren.json). Jeder Schritt kann über `"ort"` auf die `id` eines Ortes in `data/orte.json` zeigen, dann gibt es dort einen „Auf der Karte“-Knopf. Die Orte eines Ausflugs bekommen alle dieselbe `kategorie` wie der Ausflug (z.B. „Altea-Tag“), damit „Alle Orte des Ausflugs zeigen“ genau sie filtert.
+
 ## Lokal ansehen
 
 ```sh
