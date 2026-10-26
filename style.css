@@ -119,6 +119,25 @@ main { display: grid; gap: 1rem; padding: 0 1rem; max-width: 1400px; margin: 0 a
   color: #fff;
   box-shadow: 0 0 0 3px #fff, 0 2px 6px rgba(0, 0, 0, .3);
 }
+#touren { display: grid; gap: .75rem; margin-bottom: 1rem; }
+#touren:empty { display: none; }
+.tour { background: var(--background-100); border-radius: var(--radius-md); box-shadow: var(--shadow); padding: 1rem 1.25rem; }
+.tour summary { cursor: pointer; list-style: none; }
+.tour summary::-webkit-details-marker { display: none; }
+.tour summary h2 { font-size: 16px; line-height: 24px; font-weight: 600; letter-spacing: -.01em; margin: .5rem 0 .125rem; }
+.tour summary h2::after { content: " ↓"; color: var(--gray-900); font-weight: 400; }
+.tour[open] summary h2::after { content: " ↑"; }
+.tour .kat { display: inline-block; font-size: 12px; line-height: 20px; font-weight: 500; padding: 0 8px; border-radius: 9999px; background: var(--gray-1000); color: var(--background-100); }
+.tour .adr, .tour .hinweis { color: var(--gray-900); }
+.tour ol { margin: .75rem 0; padding-left: 1.25rem; display: grid; gap: .5rem; }
+.tour button {
+  font: inherit; font-size: 13px; font-weight: 500; height: 28px; padding: 0 10px; margin-left: .25rem;
+  border: 0; border-radius: var(--radius-sm); cursor: pointer;
+  color: var(--gray-1000); background: var(--background-100); box-shadow: 0 0 0 1px var(--gray-alpha-400);
+}
+.tour button:hover { background: var(--gray-100); }
+.tour button.alle-zeigen { margin-left: 0; height: 32px; padding: 0 12px; background: var(--gray-1000); color: var(--background-100); box-shadow: none; }
+.tour button:focus-visible { box-shadow: var(--focus); }
 ul.zeiten { list-style: none; margin: .5rem 0; padding: 0; font-family: var(--font-mono); font-size: 13px; line-height: 20px; }
 
 .leaflet-container { font-family: var(--font-sans); }

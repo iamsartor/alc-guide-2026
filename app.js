@@ -27,14 +27,21 @@ const unterkunftIcon = L.divIcon({
   popupAnchor: [0, -20]
 });
 
+function zeigeOrt(o, marker) {
+  karte.setView([o.lat, o.lon], 17);
+  marker.openPopup();
+  document.getElementById('karte').scrollIntoView({ behavior: 'smooth' });
+}
+
 function popup(o) {
   const zeiten = (o.oeffnungszeiten || []).map((z) => `<li>${esc(z)}</li>`).join('');
   return `<strong>${esc(o.name)}</strong><br>${esc(o.adresse)}${zeiten ? `<ul class="zeiten">${zeiten}</ul>` : '<br>'}${links(o)}`;
 }
 
-fetch('data/orte.json', { cache: 'no-cache' })
-  .then((r) => r.json())
-  .then((orte) => {
+const laden = (datei) => fetch(datei, { cache: 'no-cache' }).then((r) => r.json());
+
+Promise.all([laden('data/orte.json'), laden('data/touren.json').catch(() => [])])
+  .then(([orte, touren]) => {
     const liste = document.getElementById('orte');
     const filter = document.getElementById('filter');
     orte.sort((a, b) => Boolean(b.unterkunft) - Boolean(a.unterkunft));
@@ -52,9 +59,7 @@ fetch('data/orte.json', { cache: 'no-cache' })
         ${o.nominiert_von ? `<div class="von">Nominiert von ${esc(o.nominiert_von)}</div>` : ''}`;
       li.addEventListener('click', (e) => {
         if (e.target.closest('a')) return;
-        karte.setView([o.lat, o.lon], 17);
-        marker.openPopup();
-        document.getElementById('karte').scrollIntoView({ behavior: 'smooth' });
+        zeigeOrt(o, marker);
       });
       liste.appendChild(li);
       return { o, marker, li };
@@ -62,23 +67,56 @@ fetch('data/orte.json', { cache: 'no-cache' })
 
     if (eintraege.length) karte.fitBounds(L.featureGroup(eintraege.map((e) => e.marker)).getBounds().pad(0.2));
 
+    function zeigeKategorie(k) {
+      filter.querySelectorAll('button').forEach((x) => {
+        x.classList.toggle('aktiv', x.textContent === k);
+        x.setAttribute('aria-pressed', x.textContent === k);
+      });
+      eintraege.forEach(({ o, marker, li }) => {
+        const sichtbar = k === 'Alle' || o.kategorie === k || o.unterkunft;
+        li.hidden = !sichtbar;
+        sichtbar ? marker.addTo(karte) : marker.remove();
+      });
+    }
+
     const kategorien = ['Alle', ...new Set(orte.filter((o) => !o.unterkunft).map((o) => o.kategorie))];
     kategorien.forEach((k) => {
       const b = document.createElement('button');
       b.textContent = k;
       b.className = k === 'Alle' ? 'aktiv' : '';
       b.setAttribute('aria-pressed', k === 'Alle');
-      b.addEventListener('click', () => {
-        filter.querySelectorAll('button').forEach((x) => {
-          x.classList.toggle('aktiv', x === b);
-          x.setAttribute('aria-pressed', x === b);
-        });
-        eintraege.forEach(({ o, marker, li }) => {
-          const sichtbar = k === 'Alle' || o.kategorie === k || o.unterkunft;
-          li.hidden = !sichtbar;
-          sichtbar ? marker.addTo(karte) : marker.remove();
-        });
-      });
+      b.addEventListener('click', () => zeigeKategorie(k));
       filter.appendChild(b);
+    });
+
+    // Tagesausflüge: Schritte aus data/touren.json, verknüpft mit Orten über deren id.
+    const proId = Object.fromEntries(eintraege.map((e) => [e.o.id, e]));
+    const tourenListe = document.getElementById('touren');
+    touren.forEach((t) => {
+      const details = document.createElement('details');
+      details.className = 'tour';
+      details.innerHTML = `
+        <summary><span class="kat">Tagesausflug</span><h2>${esc(t.titel)}</h2><div class="adr">${esc(t.untertitel)}</div></summary>
+        <ol>${t.schritte.map((s) => `
+          <li><strong>${esc(s.titel)}:</strong> ${esc(s.text)}
+            ${proId[s.ort] ? `<button type="button" class="auf-karte" data-ort="${esc(s.ort)}">Auf der Karte</button>` : ''}</li>`).join('')}
+        </ol>
+        ${t.hinweis ? `<p class="hinweis">${esc(t.hinweis)}</p>` : ''}
+        <button type="button" class="alle-zeigen">Alle Orte des Ausflugs zeigen</button>`;
+      details.addEventListener('click', (e) => {
+        const knopf = e.target.closest('button');
+        if (!knopf) return;
+        if (knopf.classList.contains('alle-zeigen')) {
+          zeigeKategorie(t.kategorie);
+          const marker = t.schritte.map((s) => proId[s.ort]?.marker).filter(Boolean);
+          if (marker.length) karte.fitBounds(L.featureGroup(marker).getBounds().pad(0.2));
+          document.getElementById('karte').scrollIntoView({ behavior: 'smooth' });
+        } else {
+          const { o, marker } = proId[knopf.dataset.ort];
+          zeigeKategorie(t.kategorie);
+          zeigeOrt(o, marker);
+        }
+      });
+      tourenListe.appendChild(details);
     });
   });

@@ -1,0 +1,41 @@
+[
+  {
+    "id": "altea-tag",
+    "titel": "Altea-Tag",
+    "kategorie": "Altea-Tag",
+    "untertitel": "Tagesausflug ab El Campello, etwa 40 Minuten mit dem Auto",
+    "schritte": [
+      {
+        "titel": "Hinfahrt",
+        "text": "Über die AP-7 (mautfrei). Parken auf La Basseta (gratis, dienstags bis 14 Uhr Markt) oder in der Tiefgarage am Rathaus.",
+        "ort": "altea-parkplatz-basseta"
+      },
+      {
+        "titel": "Altstadt",
+        "text": "Hoch zur blauen Kirche, 1 bis 2 Stunden. Für Fritz die Trage statt des Kinderwagens mitnehmen.",
+        "ort": "altea-kirche"
+      },
+      {
+        "titel": "Café",
+        "text": "De Sabors an der Kirche.",
+        "ort": "altea-de-sabors"
+      },
+      {
+        "titel": "Brunch",
+        "text": "Für richtigen Brunch La Casita Jardín, besser reservieren (sonntags zu).",
+        "ort": "altea-casita-jardin"
+      },
+      {
+        "titel": "Garten",
+        "text": "Jardín de los Sentidos, Teehaus im Tropengarten. Vorher prüfen, ob offen ist.",
+        "ort": "altea-jardin-sentidos"
+      },
+      {
+        "titel": "Rückweg",
+        "text": "Leuchtturm von L'Albir, 2 km asphaltiert pro Richtung, mit dem Kinderwagen gut machbar.",
+        "ort": "faro-albir"
+      }
+    ],
+    "hinweis": "Öffnungszeiten der Cafés und des Gartens vorher auf Google Maps checken."
+  }
+]
